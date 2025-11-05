@@ -4,6 +4,7 @@ import { fail, redirect } from "@sveltejs/kit";
 const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY || "https://titanx-ptq6.onrender.com";
 
 export const actions = {
+    // @ts-ignore
   login: async ({ request, cookies }) => {
     const formData = await request.formData();
     const email = formData.get("email");
