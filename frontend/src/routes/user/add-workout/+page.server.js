@@ -2,7 +2,7 @@ import { env } from "$env/dynamic/private";
 import { fail } from "@sveltejs/kit";
 import { redirect } from '@sveltejs/kit';
 
-const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY;
 
 // LOAD function - runs when page loads, fetches existing exercises for dropdown
 // @ts-ignore

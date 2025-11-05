@@ -2,7 +2,7 @@
 import { env } from '$env/dynamic/private';
 import { redirect } from '@sveltejs/kit';
 
-const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY;
 
 export const load = async ({ fetch, cookies, url }) => {
     try {

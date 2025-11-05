@@ -1,4 +1,8 @@
 import { redirect } from '@sveltejs/kit';
+import { env } from "$env/dynamic/private";
+
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY;
+
 
 export const actions = {
     logout: async ({ cookies, locals }) => {
@@ -27,7 +31,7 @@ export async function load({ fetch, cookies }) {
         if (token) {
             try {
                 // Replace with your actual user endpoint
-                const userResponse = await fetch('http://localhost:3000/api/users/me', {
+                const userResponse = await fetch(`${API_BASE_URL}/api/users/me`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (userResponse.ok) {
