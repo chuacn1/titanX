@@ -2,7 +2,7 @@ import { env } from "$env/dynamic/private";
 import { fail } from "@sveltejs/kit";
 import { redirect } from '@sveltejs/kit';
 
-const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY;
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY || "https://titanx-ptq6.onrender.com";
 
 // LOAD function - runs when page loads, fetches existing exercises for dropdown
 // @ts-ignore
