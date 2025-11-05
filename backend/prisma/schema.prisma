@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  NORMAL
+  ADMIN
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+  email    String @unique
+  age      String
+  role     Role   @default(NORMAL)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  progress Progress[]
+  workoutSessions WorkoutSession[]
+}
+
+model Progress {
+  progressID  Int    @id @default(autoincrement())
+  totalVolume Float
+  summaryData Json?
+  id          String
+  user        User   @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("Progress")
+}
+
+model WorkoutSession {
+  sessionID      Int               @id @default(autoincrement())
+  notes          String?
+  id         String
+  user           User              @relation(fields: [id], references: [id], onDelete: Cascade)
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+sessionExercise  SessionExercise[]
+
+
+  @@map("WorkoutSession")
+}
+
+model Exercise {
+  exerciseID      Int               @id @default(autoincrement())
+  name            String
+  muscleGroup     MuscleGroup
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessionExercise  SessionExercise[]
+
+  @@map("Exercise")
+}
+
+model SessionExercise {
+  sessionExerciseID Int     @id @default(autoincrement())
+  sets             Int
+  reps             Int
+  weight           Float
+  sessionID        Int
+  exerciseID       Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workoutSession   WorkoutSession @relation(fields: [sessionID], references: [sessionID], onDelete: Cascade)
+  exercise         Exercise        @relation(fields: [exerciseID], references: [exerciseID], onDelete: Cascade)
+
+  @@map("SessionExercise")
+}
+
+enum MuscleGroup {
+  PUSH
+  PULL
+  LEGS
+  ABS
+}
