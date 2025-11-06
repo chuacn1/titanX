@@ -19,7 +19,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.16.2",
+    "@prisma/client": "^6.19.0",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "express": "^5.1.0",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "chai": "^6.2.0",
     "mocha": "^11.7.4",
-    "prisma": "^6.16.2",
+    "prisma": "^6.19.0",
     "supertest": "^7.1.4"
   }
 }
