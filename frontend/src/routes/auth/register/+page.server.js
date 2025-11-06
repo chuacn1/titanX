@@ -1,7 +1,7 @@
 import { env } from "$env/dynamic/private";
 import { fail, redirect } from "@sveltejs/kit";
 
-const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000" || env.API_BASE_URL_DEPLOY || "https://titanx-ptq6.onrender.com";
+const API_BASE_URL = env.API_BASE_URL_DEPLOY || "https://titanx-ptq6.onrender.com" || env.API_BASE_URL || "http://localhost:3000" ;
 
 export const actions = {
   // @ts-ignore
