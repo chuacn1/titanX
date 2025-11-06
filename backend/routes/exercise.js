@@ -18,7 +18,7 @@ const router = express.Router();
 import rbac from '../middleware/rbac.js';
 import jwtAuth from '../middleware/jwtAuth.js';
 
-router.post('/', validatePostExercise, jwtAuth, rbac("ADMIN"), createExercise);
+router.post('/', validatePostExercise, jwtAuth, rbac("ADMIN","NORMAL"), createExercise);
 router.get('/', jwtAuth, rbac("ADMIN", "NORMAL"), getAllExercises);
 router.get('/:exerciseID', jwtAuth, rbac("ADMIN", "NORMAL"), getExerciseById);
 router.put('/:exerciseID', validatePutExercise, jwtAuth, rbac("ADMIN"), updateExercise);
