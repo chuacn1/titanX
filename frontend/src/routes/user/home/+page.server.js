@@ -1,8 +1,6 @@
-import { redirect } from '@sveltejs/kit';
-import { env } from "$env/dynamic/private";
+import { redirect } from "@sveltejs/kit";
 
-const API_BASE_URL = env.API_BASE_URL_DEPLOY || "https://titanx-ptq6.onrender.com" || env.API_BASE_URL || "http://localhost:3000" ;
-
+const API_BASE_URL = "https://titanx-ptq6.onrender.com" ||"http://localhost:3000" ;
 
 export const actions = {
     logout: async ({ cookies, locals }) => {
